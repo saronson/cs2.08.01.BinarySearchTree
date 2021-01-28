@@ -30,15 +30,18 @@ public class BinarySearchTreeTest {
             }
         }
 
-        if( ((Integer)(t.findMin( ))).intValue( ) != min || ) {
-            System.out.println( "FindMin or FindMax error!" );
-            fail("FindMin or FindMax error!");
+        int foundMin = ((Integer)(t.findMin( ))).intValue( );
+        if( foundMin != min ) {
+            System.out.println( "Min should be " + min + " but was " + foundMin);
+            fail( "Min should be " + min + " but was " + foundMin);
+   
         }
-
-        if( ((Integer)(t.findMin( ))).intValue( ) != min ||
-        ((Integer)(t.findMax( ))).intValue( ) != max ) {
-            System.out.println( "FindMin or FindMax error!" );
-            fail("FindMin or FindMax error!");
+        
+        int foundMax = ((Integer)(t.findMax( ))).intValue( );
+        if( foundMax != max ) {
+            System.out.println( "Max should be " + max + " but was " + foundMax);
+            fail( "Max should be " + max + " but was " + foundMax);
+   
         }
 
         for( int i = 1; i < NUMS; i+= 2 )
