@@ -1,3 +1,3 @@
-# BinaryTree Lab
+# BinarySearchTree Lab
 
-Look inside of BinaryTree.java for instructions for each method.
+Look inside of BinarySearchTree.java for instructions for each method.
