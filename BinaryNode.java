@@ -4,13 +4,13 @@
  */
 public class BinaryNode {
     // Constructors
-    BinaryNode( Comparable theElement ) {
-        element = theElement;
+    BinaryNode( Comparable theValue ) {
+        value = theValue;
         left = right = null;
     }
     
     // Friendly data; accessible by other package routines
-    Comparable element;      // The data in the node
+    Comparable value;      // The data in the node
     BinaryNode left;         // Left child
     BinaryNode right;        // Right child
 }

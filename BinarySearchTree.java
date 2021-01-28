@@ -46,12 +46,12 @@ public class BinarySearchTree {
     }
 
     /**
-     * Internal method to get element field.
+     * Internal method to get value field.
      * @param t the node.
-     * @return the element field or null if t is null.
+     * @return the value field or null if t is null.
      */
-    private Comparable elementAt( BinaryNode t ) {
-        return t == null ? null : t.element;
+    private Comparable valueAt( BinaryNode t ) {
+        return t == null ? null : t.value;
     }
 
     /**
@@ -83,7 +83,7 @@ public class BinarySearchTree {
      * @return smallest item or null if empty.
      */
     public Comparable findMin( ) {
-        return elementAt( findMin( root ) );
+        return valueAt( findMin( root ) );
     }
 
     /**
@@ -101,7 +101,7 @@ public class BinarySearchTree {
      * @return the largest item or null if empty.
      */
     public Comparable findMax( ) {
-        return elementAt( findMax( root ) );
+        return valueAt( findMax( root ) );
     }
 
     /**
@@ -120,7 +120,7 @@ public class BinarySearchTree {
      * @return the matching item or null if not found.
      */
     public Comparable find( Comparable x ) {
-        return elementAt( find( x, root ) );
+        return valueAt( find( x, root ) );
     }
 
     /**
