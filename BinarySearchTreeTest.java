@@ -23,7 +23,7 @@ public class BinarySearchTreeTest {
             if (i < min) min = i;
             if (i > max) max = i;
         }
-        System.out.println("success");
+        System.out.println("done");
 
         System.out.print("Testing find...");
         for( int i = GAP; i != 0; i = ( i + GAP ) % NUMS ) {
