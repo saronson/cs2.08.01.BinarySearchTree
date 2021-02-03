@@ -20,8 +20,11 @@
  * @author Mark Allen Weiss/Aronson
  */
 public class BinarySearchTree {
-    /** The tree root. */
-    protected BinaryNode root;
+    //  root of the tree
+    public BinaryNode root;
+    
+    // Will be used later
+    public boolean isAVL = false;
 
     /**
      * Construct the tree.
