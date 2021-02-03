@@ -25,6 +25,22 @@ public class BinarySearchTreeTest {
         }
         System.out.println("done");
 
+        System.out.print("Testing findMin...");
+        int foundMin = ((Integer)(t.findMin( ))).intValue( );
+        if( foundMin != min ) {
+            System.out.println( "Min should be " + min + " but was " + foundMin);
+            fail( "Min should be " + min + " but was " + foundMin);
+        }
+        System.out.println("success");
+
+        System.out.print("Testing findMax...");
+        int foundMax = ((Integer)(t.findMax( ))).intValue( );
+        if( foundMax != max ) {
+            System.out.println( "Max should be " + max + " but was " + foundMax);
+            fail( "Max should be " + max + " but was " + foundMax);
+        }
+        System.out.println("success");
+
         System.out.print("Testing find...");
         for( int i = GAP; i != 0; i = ( i + GAP ) % NUMS ) {
             if( ((Integer)(t.find( new Integer( i ) ))).intValue( ) != i ) {
@@ -33,20 +49,7 @@ public class BinarySearchTreeTest {
             }
         }
         System.out.println("success");
-        System.out.print("Testing findMin...");
-        int foundMin = ((Integer)(t.findMin( ))).intValue( );
-        if( foundMin != min ) {
-            System.out.println( "Min should be " + min + " but was " + foundMin);
-            fail( "Min should be " + min + " but was " + foundMin);
-        }
-        System.out.println("success");
-        System.out.print("Testing findMax...");
-        int foundMax = ((Integer)(t.findMax( ))).intValue( );
-        if( foundMax != max ) {
-            System.out.println( "Max should be " + max + " but was " + foundMax);
-            fail( "Max should be " + max + " but was " + foundMax);
-        }
-        System.out.println("success");
+
         System.out.print("Testing remove...");
         for( int i = 1; i < NUMS; i+= 2 )
             t.remove( new Integer( i ) );
@@ -73,6 +76,7 @@ public class BinarySearchTreeTest {
             }
         }
         System.out.println("success");
+
         System.out.print("Testing removeMin...");
         t.removeMin();
         int foundMin2 = ((Integer)(t.findMin( ))).intValue( );
@@ -81,6 +85,7 @@ public class BinarySearchTreeTest {
             fail( "Min should be 4 but was " + foundMin2);
         }
         System.out.println("success");
+
         System.out.println("Testing finished!");
     }
 
