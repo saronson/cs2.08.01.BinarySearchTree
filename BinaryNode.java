@@ -1,4 +1,4 @@
-// IMPORTANT:  don't modify
+// IMPORTANT:  Do NOT modify
 /**
  * Basic node stored in unbalanced binary search trees
  */

@@ -7,6 +7,11 @@ public class BinarySearchTreeTest {
         b.test_all();
     } 
 
+    private void failure(String str) {
+        System.out.println(str);
+        fail(str);
+    }
+
     @Test
     public void test_all() {
         BinarySearchTree t = new BinarySearchTree( );
@@ -17,76 +22,84 @@ public class BinarySearchTreeTest {
 
         int min = GAP;
         int max = GAP;
-        System.out.print("Performing inserts...");
+        System.out.println("Performing inserts...");
         for( int i = GAP; i != 0; i = ( i + GAP ) % NUMS ) {
-            t.insert( new Integer( i ) );
+            t.insert( i );
             if (i < min) min = i;
             if (i > max) max = i;
         }
-        System.out.println("done");
+        try {
+            t.insert(min);
+            failure("Should throw DuplicateItemException if inserting duplicate item in tree.");
+        } catch (DuplicateItemException e) {
+        } catch (Exception e) {
+            failure("Should throw DuplicateItemException if inserting duplicate item in tree.");
+        }
+        System.out.println("Done");
 
-        System.out.print("Testing findMin...");
+        System.out.println("Testing findMin...");
         int foundMin = ((Integer)(t.findMin( ))).intValue( );
         if( foundMin != min ) {
-            System.out.println( "Min should be " + min + " but was " + foundMin);
-            fail( "Min should be " + min + " but was " + foundMin);
+            failure( "Min should be " + min + " but was " + foundMin);
         }
-        System.out.println("success");
+        System.out.println("Success");
 
-        System.out.print("Testing findMax...");
+        System.out.println("Testing findMax...");
         int foundMax = ((Integer)(t.findMax( ))).intValue( );
         if( foundMax != max ) {
-            System.out.println( "Max should be " + max + " but was " + foundMax);
-            fail( "Max should be " + max + " but was " + foundMax);
+            failure( "Max should be " + max + " but was " + foundMax);
         }
-        System.out.println("success");
+        System.out.println("Success");
 
-        System.out.print("Testing find...");
+        System.out.println("Testing find...");
         for( int i = GAP; i != 0; i = ( i + GAP ) % NUMS ) {
-            if( ((Integer)(t.find( new Integer( i ) ))).intValue( ) != i ) {
-                System.out.println( "Could not find " + i );
-                fail("Could not find " + i);
+            if( ((Integer)(t.find( i ))).intValue( ) != i ) {
+                failure("Could not find " + i);
             }
         }
-        System.out.println("success");
 
-        System.out.print("Testing remove...");
-        for( int i = 1; i < NUMS; i+= 2 )
-            t.remove( new Integer( i ) );
-
-        if( ((Integer)(t.findMin( ))).intValue( ) != 2 ||
-        ((Integer)(t.findMax( ))).intValue( ) != NUMS - 2 ) {
-            System.out.println( "FindMin or FindMax error!" );
-            fail("FindMin or FindMax error!");
+        Comparable b = t.find( max + 1);
+        if (b != null) {
+            failure("Found " + (max + 1) + " which is not in tree");
         }
-
-        int max2 = 2;
-        for( int i = 2; i < NUMS; i+=2 ) {
-            if( ((Integer)(t.find( new Integer( i ) ))).intValue( ) != i ) {
-                System.out.println( "Could not find " + i );
-                fail("Could not find " + i);
-            }
-            max2 = i;
-        }
-
-        for( int i = 1; i < NUMS; i+=2 ) {
-            if( t.find( new Integer( i ) ) != null ) {
-                System.out.println( "Should not have found " + i );
-                fail( "Should not have found " + i );
-            }
-        }
-        System.out.println("success");
-
-        System.out.print("Testing removeMin...");
+        System.out.println("Success");
+        
+        System.out.println("Testing removeMin...");
         t.removeMin();
         int foundMin2 = ((Integer)(t.findMin( ))).intValue( );
-        if( foundMin2 != 4 ) {
-            System.out.println( "Min should be 4 but was " + foundMin2);
-            fail( "Min should be 4 but was " + foundMin2);
+        if( foundMin2 != 2 ) {
+            failure( "Min should be 2 but was " + foundMin2);
         }
-        System.out.println("success");
+        
+        for( int i = GAP; i != 0; i = ( i + GAP ) % NUMS ) {
+            if( i != min && (int)t.find( i ) != i ) {
+                failure("Could not find " + i + " (after removeMin)");
+            }
+        }
+        System.out.println("Success");
+        
+        System.out.println("Testing remove...");
+        for( int i = 3; i < NUMS; i+= 2 )
+            t.remove( i );
+
+        if ((int)t.findMin( ) != 2 || (int)t.findMax( ) != NUMS - 2 ) {
+            failure("findMin or findMax error after calling remove!");
+        }
+        
+        for( int i = 1; i < NUMS; i+=2 ) {
+            if( t.find( i) != null ) {
+                failure( "Should not have found " + i + " after remove" );
+            }
+        }
+
+        for( int i = 2; i < NUMS; i+=2 ) {
+            if( ((Integer)(t.find( i ))).intValue( ) != i ) {
+                failure("Could not find " + i + " (after remove)");
+            }
+        }
+
+        System.out.println("Success");
 
         System.out.println("Testing finished!");
     }
-
 }

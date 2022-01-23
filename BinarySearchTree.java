@@ -1,28 +1,11 @@
-// BinarySearchTree class
-//
-// CONSTRUCTION: with no initializer
-//
-// ******************PUBLIC OPERATIONS*********************
-// void insert( x )       --> Insert x
-// void remove( x )       --> Remove x
-// void removeMin( )      --> Remove minimum item
-// Comparable find( x )   --> Return item that matches x
-// Comparable findMin( )  --> Return smallest item
-// Comparable findMax( )  --> Return largest item
-// boolean isEmpty( )     --> Return true if empty; else false
-// void makeEmpty( )      --> Remove all items
-// ******************ERRORS********************************
-// Exceptions are thrown by insert, remove, and removeMin if warranted
-
 /**
  * Implements an unbalanced binary search tree.
- * Note that all "matching" is based on the compareTo method.
- * @author Mark Allen Weiss/Aronson
+ * @author Weiss/Aronson
  */
 public class BinarySearchTree {
     //  root of the tree
     public BinaryNode root;
-    
+
     // Will be used later
     public boolean isAVL = false;
 
@@ -34,7 +17,7 @@ public class BinarySearchTree {
     }
 
     /**
-     * Make the tree logically empty.
+     * Makes the tree logically empty.
      */
     public void makeEmpty( ) {
         root = null;
@@ -49,12 +32,17 @@ public class BinarySearchTree {
     }
 
     /**
-     * Internal method to get value field.
+     * Helper method to get value field.
      * @param t the node.
      * @return the value field or null if t is null.
      */
     private Comparable valueAt( BinaryNode t ) {
         return t == null ? null : t.value;
+        // a ? b : c means
+        // if (a)
+        //   b
+        // else
+        //   c
     }
 
     /**
@@ -74,10 +62,6 @@ public class BinarySearchTree {
      * @throws DuplicateItemException if x is already present.
      */
     protected BinaryNode insert( Comparable x, BinaryNode t ) {
-        if (true)
-            ; // find spot otherwise
-        else // duplicate
-            throw new DuplicateItemException( x.toString( ) );
         return t;
     }
 
@@ -90,7 +74,7 @@ public class BinarySearchTree {
     }
 
     /**
-     * Internal method to find the smallest item in a subtree.
+     * Helper method to find the smallest item in a subtree.
      * @param t the node that roots the tree.
      * @return node containing the smallest item.
      */
@@ -108,7 +92,7 @@ public class BinarySearchTree {
     }
 
     /**
-     * Internal method to find the largest item in a subtree.
+     * Helper method to find the largest item in a subtree.
      * @param t the node that roots the tree.
      * @return node containing the largest item.
      */
@@ -134,7 +118,26 @@ public class BinarySearchTree {
      */
     private BinaryNode find( Comparable x, BinaryNode t ) {
 
-        return null;         // Not found
+        return null;
+    }
+
+    /**
+     * Remove minimum item from the tree.
+     * @throws ItemNotFoundException if tree is empty.
+     */
+    public void removeMin( ) {
+        root = removeMin( root );
+    }
+
+    /**
+     * Helper method to remove minimum item from a subtree.
+     * @param t the node that roots the tree.
+     * @return the new root.
+     * @throws ItemNotFoundException if x is not found.
+     */
+    protected BinaryNode removeMin( BinaryNode t ) {
+ 
+        return t;
     }
 
     /**
@@ -147,40 +150,15 @@ public class BinarySearchTree {
     }
 
     /**
-     * Internal method to remove from a subtree.
+     * Helper method to remove from a subtree.
      * @param x the item to remove.
      * @param t the node that roots the tree.
      * @return the new root.
      * @throws ItemNotFoundException if x is not found.
      */
     protected BinaryNode remove( Comparable x, BinaryNode t ) {
-        if( t == null )
-            throw new ItemNotFoundException( x.toString( ) );
 
         return t;
     }
-
-    /**
-     * Remove minimum item from the tree.
-     * @throws ItemNotFoundException if tree is empty.
-     */
-    public void removeMin( ) {
-        root = removeMin( root );
-    }
-
-    /**
-     * Internal method to remove minimum item from a subtree.
-     * @param t the node that roots the tree.
-     * @return the new root.
-     * @throws ItemNotFoundException if x is not found.
-     */
-    protected BinaryNode removeMin( BinaryNode t ) {
-        if( t == null )
-            throw new ItemNotFoundException( );
-
-        return t;
-    }
-
 }
-
 
