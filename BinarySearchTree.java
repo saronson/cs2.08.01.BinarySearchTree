@@ -133,7 +133,7 @@ public class BinarySearchTree {
      * Helper method to remove minimum item from a subtree.
      * @param t the node that roots the tree.
      * @return the new root.
-     * @throws ItemNotFoundException if x is not found.
+     * @throws ItemNotFoundException if tree is empty.
      */
     protected BinaryNode removeMin( BinaryNode t ) {
  
