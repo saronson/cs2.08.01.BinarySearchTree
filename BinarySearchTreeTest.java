@@ -63,21 +63,21 @@ public class BinarySearchTreeTest {
             failure("Found " + (max + 1) + " which is not in tree");
         }
         System.out.println("Success");
-        
+
         System.out.println("Testing removeMin...");
         t.removeMin();
         int foundMin2 = ((Integer)(t.findMin( ))).intValue( );
         if( foundMin2 != 2 ) {
             failure( "Min should be 2 but was " + foundMin2);
         }
-        
+
         for( int i = GAP; i != 0; i = ( i + GAP ) % NUMS ) {
             if( i != min && (int)t.find( i ) != i ) {
                 failure("Could not find " + i + " (after removeMin)");
             }
         }
         System.out.println("Success");
-        
+
         System.out.println("Testing remove...");
         for( int i = 3; i < NUMS; i+= 2 )
             t.remove( i );
@@ -85,7 +85,7 @@ public class BinarySearchTreeTest {
         if ((int)t.findMin( ) != 2 || (int)t.findMax( ) != NUMS - 2 ) {
             failure("findMin or findMax error after calling remove!");
         }
-        
+
         for( int i = 1; i < NUMS; i+=2 ) {
             if( t.find( i) != null ) {
                 failure( "Should not have found " + i + " after remove" );
@@ -97,9 +97,18 @@ public class BinarySearchTreeTest {
                 failure("Could not find " + i + " (after remove)");
             }
         }
+        try {
+            t.remove(max + 1);
+            failure("Should throw ItemNotFoundException if removing item that cannot be found.");
+        } catch (ItemNotFoundException e) {
+        } catch (Exception e) {
+            failure("Should throw ItemNotFoundException if removing item that cannot be found.");
+        }
 
         System.out.println("Success");
 
         System.out.println("Testing finished!");
     }
 }
+
+
