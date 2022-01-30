@@ -5,6 +5,7 @@ public class BinarySearchTreeTest {
     public static void main(String[] args) {
         BinarySearchTreeTest b = new BinarySearchTreeTest();
         b.test_all();
+        b.test_avl();
     } 
 
     private void failure(String str) {
@@ -107,8 +108,52 @@ public class BinarySearchTreeTest {
 
         System.out.println("Success");
 
-        System.out.println("Testing finished!");
+   //     System.out.println("Testing finished!");
     }
+
+    @Test
+    public void test_avl()
+    {
+      System.out.println("Testing AVL...");
+        BinarySearchTree t = new BinarySearchTree();
+        boolean oldValue = t.isAVL;
+        t.isAVL = true;
+
+        for( int i = 1; i < 30; i++) {
+            t.insert( new Integer( i ) );
+            int h = height(t.root);
+            int should = 1+(int)(Math.round(Math.log(i)/Math.log(2)));
+         //   System.out.println(h + " " + should);
+            assertTrue("height is " + h + " but should be " + should, Math.abs(h-should) <= 1);
+         //      printTree(t.root);
+         //      System.out.println();
+        }
+        t.isAVL = oldValue;
+
+    //    printTree(t.root);
+   //     System.out.println();
+      System.out.println("Success");
+      System.out.println();
+    }
+
+    public void printTree(BinaryNode t) {
+        if (t == null)
+            return;
+        System.out.print(t.value +  " ");
+        printTree(t.left);
+     //   System.out.print(t.value +  " ");
+
+        printTree(t.right);
+    }
+
+
+    private int height(BinaryNode t) {
+        if (t == null)
+            return 0;
+        int leftHeight = 1 + height(t.left);
+        int rightHeight = 1 + height(t.right);
+        assertTrue("leftHeight is " + leftHeight + " and right height is " + rightHeight, Math.abs(leftHeight-rightHeight) <= 1);
+        return Math.max(1 + height(t.left), 1 + height(t.right));
+    }
+
 }
-
-
