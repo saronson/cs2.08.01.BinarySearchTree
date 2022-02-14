@@ -105,7 +105,10 @@ public class BinarySearchTreeTest {
         } catch (Exception e) {
             failure("Should throw ItemNotFoundException if removing item that cannot be found.");
         }
-
+      BinarySearchTree t2 = new BinarySearchTree( );
+      t2.insert("abc".substring(0,3));
+      Object obj = t2.find("abc".substring(0,3));
+      assertEquals("should compare with .equals", "abc".substring(0,3), obj);
         System.out.println("Success");
 
    //     System.out.println("Testing finished!");
