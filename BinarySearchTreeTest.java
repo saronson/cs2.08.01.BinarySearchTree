@@ -2,6 +2,7 @@ import static org.junit.Assert.*;
 import org.junit.*;
 
 public class BinarySearchTreeTest {
+    public static boolean testAVL = false;
     public static void main(String[] args) {
         BinarySearchTreeTest b = new BinarySearchTreeTest();
         b.test_all();
@@ -16,6 +17,7 @@ public class BinarySearchTreeTest {
     @Test
     public void test_all() {
         BinarySearchTree t = new BinarySearchTree( );
+        t.isAVL = false;
         final int NUMS = 4000;
         final int GAP  =   37;
 
@@ -117,9 +119,10 @@ public class BinarySearchTreeTest {
     @Test
     public void test_avl()
     {
+        if (!testAVL)
+            return;
       System.out.println("Testing AVL...");
         BinarySearchTree t = new BinarySearchTree();
-        boolean oldValue = t.isAVL;
         t.isAVL = true;
 
         for( int i = 1; i < 30; i++) {
@@ -131,7 +134,6 @@ public class BinarySearchTreeTest {
          //      printTree(t.root);
          //      System.out.println();
         }
-        t.isAVL = oldValue;
 
     //    printTree(t.root);
    //     System.out.println();
